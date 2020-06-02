@@ -34,22 +34,40 @@ public class AVL
 
     private Nodo Balancear(Nodo padre)
     {
-        if (padre != null) {
+        if (padre != null)
+        {
             int ladoIzquierdo = GetAltura(padre.Izquierdo);
             int ladoDerecho = GetAltura(padre.Derecho);
 
             int desbalance = ladoIzquierdo - ladoDerecho;
+            EstadoArbol peso = EstadoArbol.Balanceado;
 
-            if (padre.Derecho != null)
+            if (desbalance == 2)
+                peso = EstadoArbol.PesoAlLadoIzquierdo;
+            if (desbalance == -2)
+                peso = EstadoArbol.PesoAlLadoDerecho;
+
+            if (peso == EstadoArbol.PesoAlLadoDerecho)
             {
-                if (desbalance == -2 && padre.Derecho != null) {
+                int ladoDerechoIzquierdo = GetAltura(padre.Derecho.Izquierdo);
+                int ladoDerechoDerecho = GetAltura(padre.Derecho.Derecho);
+                int desbalanceDerecho = ladoDerechoDerecho - ladoDerechoIzquierdo;
+
+                if (padre.Derecho != null && desbalanceDerecho < 0)
+                {
                     //DerechaIzquierda
-                } else {
+                } else
+                {
                     //Rotacion Izquierda
                 }
-            } else if (padre.Izquierdo != null)
+            }
+            else if (peso == EstadoArbol.PesoAlLadoIzquierdo)
             {
-                if (desbalance == 2 && padre.Izquierdo != null) {
+                int ladoDerechoIzquierdo = GetAltura(padre.Izquierdo.Izquierdo);
+                int ladoDerechoDerecho = GetAltura(padre.Izquierdo.Derecho);
+                int desbalanceDerecho = ladoDerechoDerecho - ladoDerechoIzquierdo;
+
+                if (padre.Izquierdo != null && desbalanceDerecho > 0) {
                     //IzquierdaDerecha
                 } else {
                     //Rotacion Derecha
@@ -57,6 +75,11 @@ public class AVL
             }
         }
 
+        return padre;
+    }
+
+    private Nodo RotacionDerecha(Nodo padre)
+    {
         return null;
     }
 
@@ -74,5 +97,4 @@ public class AVL
             return ladoIzquierdo + 1;
 
     }
-
 }
