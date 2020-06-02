@@ -65,9 +65,9 @@ public class AVL
             {
                 int ladoDerechoIzquierdo = GetAltura(padre.Izquierdo.Izquierdo);
                 int ladoDerechoDerecho = GetAltura(padre.Izquierdo.Derecho);
-                int desbalanceDerecho = ladoDerechoDerecho - ladoDerechoIzquierdo;
+                int desbalanceIzquierdo = ladoDerechoDerecho - ladoDerechoIzquierdo;
 
-                if (padre.Izquierdo != null && desbalanceDerecho > 0) {
+                if (padre.Izquierdo != null && desbalanceIzquierdo > 0) {
                     //IzquierdaDerecha
                 } else {
                     //Rotacion Derecha
